@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反應迷宮 (Reaction Maze)</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            flex-direction: column;
+        }
+        
+        .game-container {
+            position: relative;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 2px solid #333;
+        }
+        
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .controls {
+            margin-top: 20px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        .game-over {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            display: none;
+        }
+        
+        .instructions {
+            max-width: 600px;
+            margin: 0 auto 20px;
+            text-align: left;
+            padding: 15px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+            border-left: 5px solid #4CAF50;
+        }
+    </style>
+    <script src="sound.js"></script>
+</head>
+<body>
+    <div class="game-container">
+        <h1>反應迷宮 (Reaction Maze)</h1>
+        
+        <div class="instructions">
+            <h3>遊戲說明：</h3>
+            <p>在限定時間內，控制角色穿過迷宮到達終點。避開障礙物，隨著關卡提升，迷宮會變得更大、障礙物更多、時間更短！</p>
+            <p><strong>操作方式：</strong> 使用鍵盤方向鍵 (↑↓←→) 或 WASD 控制角色移動</p>
+        </div>
+        
+        <div class="game-info">
+            <div>關卡: <span id="level">1</span></div>
+            <div>時間: <span id="timer">30</span>秒</div>
+        </div>
+        
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        
+        <div class="controls">
+            <button id="startBtn">開始遊戲</button>
+            <button id="restartBtn" disabled>重新開始</button>
+        </div>
+        
+        <div class="game-over" id="gameOverScreen">
+            <h2 id="gameOverTitle">遊戲結束</h2>
+            <p id="gameOverMessage"></p>
+            <button id="playAgainBtn">再玩一次</button>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
